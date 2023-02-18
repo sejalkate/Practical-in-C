@@ -1,0 +1,72 @@
+#include<stdio.h>
+#include<ctype.h>
+int stack[100];
+int top=-1;
+void push(int);
+int pop();
+
+void main()
+{
+    printf("Evaluation of Postfix expression...!");
+    char exp[50],*e;
+    int op1,op2,res,no,x;
+    
+    printf("\nEnter the postfix expression= ");
+    scanf("%s",exp);
+    e=exp;
+    
+    while(*e!='\0')
+    {
+        if(isdigit(*e))
+        {
+            no=*e-48;
+            push(no);
+        }
+        else
+        {
+            op2=pop();
+            op1=pop();
+            switch(*e)
+            {
+                case '+':
+                {
+                    res=op1+op2;
+                    break;
+                }
+                case '-':
+                {
+                    res=op1-op2;
+                    break;
+                }
+                case '*':
+                {
+                    res=op1*op2;
+                    break;
+                }
+                case '/':
+                {
+                    res=op1/op2;
+                    break;
+                }
+            }
+            push(res);
+        }
+        e++;
+    }
+    x=pop();
+    printf("\nEvaluated value = %d",x);
+}
+
+void push(int n)
+{
+    top++;
+    stack[top]=n;
+}
+
+int pop()
+{
+    int res;
+    res=stack[top];
+    top--;
+    return res;
+}
