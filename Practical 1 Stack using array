@@ -1,0 +1,81 @@
+#include<stdio.h>
+void push(int no);
+void pop();
+void display();
+int stack[10];
+int top=-1,choice,element,i;
+
+void main()
+{
+    printf("Stack using Array.....!");
+    
+    do
+    {
+        printf("\n*****Menu*****");
+        printf("\n1.Push \n2.Pop \n3.Display");
+        printf("\nEnter your choice= ");
+        scanf("%d",&choice);
+        
+        switch(choice)
+        {
+            case 1:
+            printf("\nEnter the element you want to push= ");
+            scanf("%d",&element);
+            push(element);
+            break;
+            case 2:
+            pop();
+            break;
+            case 3:
+            display();
+            break;
+            default:
+            printf("\nWrong Choice...Please enter a valid choice");
+        }
+        printf("\nIf you want to continue press 1 = ");
+        scanf("%d",&choice);
+    }while(choice==1);
+}
+
+void push(int no)
+{
+    if(top==9)      //Overflow
+    {
+        printf("\nStack is full...Insertion is not possible...!");
+    }
+    else
+    {
+        top++;
+        stack[top]=no;
+        printf("\nElement is pushed successfully...!");
+    }
+}
+
+void pop()
+{
+    if(top==-1)         //Underflow
+    {
+        printf("\nStack is empty...Deletion is not possible...!");
+    }
+    else
+    {
+        top--;
+        printf("\nElement is poped successfully...!");
+    }
+}
+
+void display()
+{
+    if(top==-1)
+    {
+        printf("\nStack is empty...!");
+    }
+    else
+    {
+        printf("\nElements in the stack = ");
+        for(i=top;i>=0;i--)
+        {
+            printf("%d \t",stack[i]);
+        }
+    }
+}
